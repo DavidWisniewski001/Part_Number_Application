@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Find parts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.chip{min-height:36px;padding:0 14px;border-radius:18px;font:500 13px 'IBM Plex Sans',sans-serif;cursor:pointer}
+th{text-align:left;font:600 12px 'IBM Plex Sans',sans-serif;color:#59636E;padding:10px 12px;border-bottom:1px solid #D9DDD8;letter-spacing:.02em}
+td{padding:10px 12px;border-bottom:1px solid #E7EAE5;font-size:14px;vertical-align:top}
+.pnbtn{background:none;border:0;padding:0;font:600 14px 'IBM Plex Mono',monospace;color:#1F4FBF;cursor:pointer;text-align:left}
+.pnbtn:hover{text-decoration:underline}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 900px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a class="on" href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <div style="padding: 28px 32px 0; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; justify-content: space-between">
+      <div>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Find parts</h1>
+        <p style="margin: 6px 0 0; color: #59636E; font-size: 14px">Search before you create. Every part in the AutoCAD Electrical catalog is listed here.</p>
+      </div>
+      <a class="btn btn-primary" href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    </div>
+
+    <div style="padding: 20px 32px 0; display: flex; flex-direction: column; gap: 12px">
+      <label for="q" style="position: absolute; left: -9999px">Search parts</label>
+      <div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 14px; min-height: 52px">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#59636E" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input id="q" type="search" value="{{query}}" onChange="{{onQuery}}" placeholder="Part number, description, manufacturer or manufacturer part number…" style="flex: 1; border: 0; outline: none; font: 400 16px 'IBM Plex Sans', sans-serif; background: transparent; color: #1A1F24; min-width: 0">
+        <span style="color: #59636E; font-size: 12px; white-space: nowrap">{{countLabel}}</span>
+      </div>
+      <div role="group" aria-label="Category" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{chips}}" as="c" hint-placeholder-count="6">
+          <button class="chip" style="{{c.style}}" onClick="{{c.pick}}">{{c.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding: 16px 32px 24px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; flex: 1">
+      <div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; overflow-x: auto">
+        <table style="width: 100%; border-collapse: collapse; min-width: 640px">
+          <thead><tr><th>PART NUMBER</th><th>DESCRIPTION</th><th>MANUFACTURER</th><th>MFR PART NO.</th><th>TABLE</th></tr></thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+              <tr style="{{r.rowStyle}}" onClick="{{r.pick}}">
+                <td>
+                  <sc-if value="{{r.hasPn}}" hint-placeholder-val="{{true}}">
+                    <button class="pnbtn" onClick="{{r.pick}}">{{r.pn}}</button>
+                  </sc-if>
+                  <sc-if value="{{r.noPn}}" hint-placeholder-val="{{false}}">
+                    <button class="pnbtn" onClick="{{r.pick}}" style="color: #9A4A00; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; font-size: 12px">No number yet</button>
+                  </sc-if>
+                </td>
+                <td>{{r.desc}}</td>
+                <td style="color: #3B444D">{{r.mfr}}</td>
+                <td class="mono" style="font-size: 13px">{{r.mpn}}</td>
+                <td class="mono" style="font-size: 13px; color: #59636E">{{r.table}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+          <div style="padding: 40px 24px; text-align: center; color: #3B444D">
+            <div style="font-weight: 600; font-size: 16px">No parts match “{{query}}”</div>
+            <div style="margin-top: 6px; font-size: 14px; color: #59636E">If it really doesn’t exist yet, create it. The app will still check for near-duplicates first.</div>
+            <div style="margin-top: 16px"><a class="btn btn-primary" href="CreatePart.dc.html">Create a new part</a></div>
+          </div>
+        </sc-if>
+      </div>
+
+      <aside aria-label="Selected part" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+        <sc-if value="{{sel.hasPn}}" hint-placeholder-val="{{true}}">
+          <div>
+            <div style="font-size: 12px; font-weight: 600; color: #59636E; letter-spacing: .04em">PART NUMBER</div>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 4px; flex-wrap: wrap">
+              <div class="mono" style="font-size: 30px; font-weight: 600; letter-spacing: .01em">{{sel.pn}}</div>
+              <button class="btn btn-ghost" style="min-height: 36px; padding: 0 12px; font-size: 13px" onClick="{{copy}}">{{copyLabel}}</button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{sel.noPn}}" hint-placeholder-val="{{false}}">
+          <div style="background: #FFF1E0; border-radius: 6px; padding: 14px; color: #6B3400; font-size: 14px">
+            <div style="font-weight: 600">This catalog row has no part number</div>
+            <div style="margin-top: 4px">It was added outside the app. Assign it a number so it can go to the ERP.</div>
+            <div style="margin-top: 10px"><a href="AssignNumbers.dc.html" style="color: #6B3400; font-weight: 600">Assign a number</a></div>
+          </div>
+        </sc-if>
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: #59636E; letter-spacing: .04em">DESCRIPTION</div>
+          <div style="margin-top: 4px; font-size: 15px; font-weight: 500; line-height: 1.4">{{sel.desc}}</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <div><div style="font-size: 12px; color: #59636E">Manufacturer</div><div style="font-size: 14px; font-weight: 500">{{sel.mfr}}</div></div>
+          <div><div style="font-size: 12px; color: #59636E">Mfr part no.</div><div class="mono" style="font-size: 14px">{{sel.mpn}}</div></div>
+          <div><div style="font-size: 12px; color: #59636E">Category</div><div style="font-size: 14px">{{sel.cat}}</div></div>
+          <div><div style="font-size: 12px; color: #59636E">Catalog table</div><div class="mono" style="font-size: 14px">{{sel.table}}</div></div>
+        </div>
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: #59636E; letter-spacing: .04em; margin-bottom: 6px">ATTRIBUTES</div>
+          <sc-for list="{{sel.attrs}}" as="a" hint-placeholder-count="3">
+            <div style="display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid #EEF0EC; font-size: 14px">
+              <span style="color: #3B444D">{{a.k}}</span><span class="mono" style="font-weight: 500">{{a.v}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto">
+          <a class="btn btn-ghost" href="CreatePart.dc.html">Create similar part</a>
+          <button class="btn btn-ghost">Open datasheet</button>
+        </div>
+      </aside>
+    </div>
+
+    <footer style="border-top: 1px solid #D9DDD8; background: #FFFFFF; padding: 8px 32px; display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; color: #3B444D">
+      <span style="display: inline-flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #1E7A42"></span>Connected to [SERVER]\[INSTANCE] · [CATALOG DATABASE]</span>
+      <span>Format <span class="mono">{CAT}-{SEQ:6}</span></span>
+      <span>Read and write</span>
+    </footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { query: '', cat: 'All', sel: 'RLY-000123', copied: false };
+  }
+  renderVals() {
+    const parts = [
+      { pn: 'RLY-000118', desc: 'RELAY, GENERAL PURPOSE: 24VDC COIL, DPDT', mfr: 'ACME CONTROLS', mpn: 'AC-R2C-24D', table: 'CR', cat: 'Relay', attrs: [['Coil voltage', '24VDC'], ['Contacts', 'DPDT'], ['Contact rating', '10A'], ['Mounting', 'PLUG-IN']] },
+      { pn: 'RLY-000123', desc: 'RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT, 5A, PLUG-IN', mfr: 'ACME CONTROLS', mpn: 'AC-R4C-24D', table: 'CR', cat: 'Relay', attrs: [['Coil voltage', '24VDC'], ['Contacts', '4PDT'], ['Contact rating', '5A'], ['Mounting', 'PLUG-IN']] },
+      { pn: 'CBK-000045', desc: 'BREAKER, MINIATURE CIRCUIT: 1P, 10A, C CURVE', mfr: 'NORTHFIELD ELECTRIC', mpn: 'NF-MCB1-C10', table: 'CB', cat: 'Breaker', attrs: [['Poles', '1P'], ['Current', '10A'], ['Trip curve', 'C'], ['Interrupting', '10KA']] },
+      { pn: 'CBK-000046', desc: 'BREAKER, MINIATURE CIRCUIT: 3P, 16A, C CURVE', mfr: 'NORTHFIELD ELECTRIC', mpn: 'NF-MCB3-C16', table: 'CB', cat: 'Breaker', attrs: [['Poles', '3P'], ['Current', '16A'], ['Trip curve', 'C'], ['Interrupting', '10KA']] },
+      { pn: 'TRM-001002', desc: 'TERMINAL BLOCK, FEED-THROUGH: 2.5MM2, SCREW, GRAY', mfr: 'LINDQVIST TERMINALS', mpn: 'LT-FT25-GY', table: 'TRMS', cat: 'Terminal', attrs: [['Wire size', '2.5MM2'], ['Connection', 'SCREW'], ['Color', 'GRAY']] },
+      { pn: 'PBN-000210', desc: 'PUSH BUTTON, FLUSH: 22MM, GREEN, 1NO, MOMENTARY', mfr: 'ACME CONTROLS', mpn: 'AC-PB22-G10', table: 'PB', cat: 'Push button', attrs: [['Size', '22MM'], ['Color', 'GREEN'], ['Contacts', '1NO'], ['Action', 'MOMENTARY']] },
+      { pn: 'LIT-000077', desc: 'PILOT LIGHT: 22MM, RED, 24VAC/DC, LED', mfr: 'ACME CONTROLS', mpn: 'AC-PL22-R24', table: 'LT', cat: 'Light', attrs: [['Size', '22MM'], ['Color', 'RED'], ['Voltage', '24VAC/DC'], ['Lamp', 'LED']] },
+      { pn: '', desc: 'Relay 24V', mfr: 'ACME', mpn: 'AC-R4C-24D-B', table: 'CR', cat: 'Relay', attrs: [] }
+    ];
+    const q = this.state.query.trim().toLowerCase();
+    const shown = parts.filter((p) =>
+      (this.state.cat === 'All' || p.cat === this.state.cat) &&
+      (!q || [p.pn, p.desc, p.mfr, p.mpn].join(' ').toLowerCase().includes(q)));
+    const key = (p) => p.pn || p.mpn;
+    const selPart = parts.find((p) => key(p) === this.state.sel) || parts[1];
+    const cats = ['All', 'Relay', 'Breaker', 'Terminal', 'Push button', 'Light'];
+    return {
+      query: this.state.query,
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      countLabel: shown.length + (shown.length === 1 ? ' part' : ' parts'),
+      empty: shown.length === 0,
+      chips: cats.map((c) => ({
+        label: c,
+        pick: () => this.setState({ cat: c }),
+        style: c === this.state.cat
+          ? 'background: #1A1F24; color: #FFFFFF; border: 1px solid #1A1F24'
+          : 'background: #FFFFFF; color: #1A1F24; border: 1px solid #C9CEC8'
+      })),
+      rows: shown.map((p) => ({
+        ...p,
+        pn: p.pn,
+        hasPn: !!p.pn,
+        noPn: !p.pn,
+        pick: () => this.setState({ sel: key(p), copied: false }),
+        rowStyle: key(p) === key(selPart) ? 'background: #E6ECFA; cursor: pointer' : 'cursor: pointer'
+      })),
+      sel: { ...selPart, hasPn: !!selPart.pn, noPn: !selPart.pn, attrs: selPart.attrs.map(([k, v]) => ({ k, v })) },
+      copy: () => this.setState({ copied: true }),
+      copyLabel: this.state.copied ? 'Copied' : 'Copy'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Part number format</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-primary:disabled{background:#AFC0E6;cursor:not-allowed}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.card{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:14px;border-radius:8px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif}
+.add{min-height:36px;padding:0 12px;border-radius:6px;border:1px dashed #8A939B;background:#FFFFFF;color:#1A1F24;font:500 13px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.add:hover{background:#EEF0EC}
+.seg{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 6px 0 12px;border-radius:6px;font:600 14px 'IBM Plex Mono',monospace}
+.x{width:28px;height:28px;border:0;border-radius:4px;background:transparent;color:inherit;cursor:pointer;font-size:16px;line-height:1}
+.x:hover{background:rgba(0,0,0,.08)}
+.field{box-sizing:border-box;min-height:40px;border:1px solid #C9CEC8;border-radius:6px;padding:0 10px;font:400 15px 'IBM Plex Mono',monospace;background:#FFFFFF;color:#1A1F24}
+.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.pill{min-height:40px;min-width:44px;padding:0 12px;border-radius:6px;font:600 14px 'IBM Plex Mono',monospace;cursor:pointer}
+input[type=radio]{width:18px;height:18px;accent-color:#1F4FBF;margin:0}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 960px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a class="on" href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Part number format</h1>
+      <p style="margin: 6px 0 0; color: #59636E; font-size: 14px; max-width: 760px">Choose how your organization’s part numbers look. Start from a common layout, or build your own from blocks.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <div style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+        <section aria-labelledby="h-start" style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 22px">
+          <h2 id="h-start" style="margin: 0 0 14px; font-size: 17px">1. Start from a layout</h2>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px">
+            <sc-for list="{{presets}}" as="p" hint-placeholder-count="6">
+              <button class="card" style="{{p.style}}" onClick="{{p.pick}}" aria-pressed="{{p.on}}">
+                <span style="font-weight: 600; font-size: 14px">{{p.name}}</span>
+                <span class="mono" style="font-size: 16px; font-weight: 600">{{p.example}}</span>
+                <sc-if value="{{p.rec}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; color: #1E6B3A; font-weight: 600">Recommended</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+        </section>
+
+        <section aria-labelledby="h-blocks" style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 16px">
+          <h2 id="h-blocks" style="margin: 0; font-size: 17px">2. Adjust the blocks</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 48px; background: #F3F4F1; border-radius: 6px; padding: 8px">
+            <sc-for list="{{segs}}" as="g" hint-placeholder-count="3">
+              <span class="seg" style="{{g.style}}">{{g.label}}<button class="x" aria-label="{{g.removeLabel}}" onClick="{{g.remove}}">×</button></span>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+            <span style="font-size: 13px; color: #59636E; margin-right: 4px">Add:</span>
+            <button class="add" onClick="{{addCat}}">+ Category code</button>
+            <button class="add" onClick="{{addSep}}">+ Separator</button>
+            <button class="add" onClick="{{addSeq}}">+ Sequence number</button>
+            <button class="add" onClick="{{addYear}}">+ Year</button>
+            <button class="add" onClick="{{addText}}">+ Fixed text</button>
+            <button class="add" onClick="{{addChk}}">+ Check digit</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; border-top: 1px solid #E7EAE5; padding-top: 16px">
+            <div role="group" aria-label="Separator">
+              <div class="lbl">Separator</div>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap">
+                <sc-for list="{{seps}}" as="s" hint-placeholder-count="4"><button class="pill" style="{{s.style}}" onClick="{{s.pick}}" aria-label="{{s.aria}}">{{s.label}}</button></sc-for>
+              </div>
+            </div>
+            <div role="group" aria-label="Digits in the sequence">
+              <div class="lbl">Digits in the sequence</div>
+              <div style="display: flex; gap: 6px; align-items: center">
+                <button class="pill" style="background: #FFFFFF; border: 1px solid #C9CEC8; color: #1A1F24" onClick="{{lessDigits}}" aria-label="Fewer digits">−</button>
+                <span class="mono" style="min-width: 32px; text-align: center; font-size: 18px; font-weight: 600">{{width}}</span>
+                <button class="pill" style="background: #FFFFFF; border: 1px solid #C9CEC8; color: #1A1F24" onClick="{{moreDigits}}" aria-label="More digits">+</button>
+              </div>
+              <div style="font-size: 12px; color: #59636E; margin-top: 6px">{{capacity}}</div>
+            </div>
+            <div>
+              <label class="lbl" for="start">First number</label>
+              <input id="start" class="field" style="width: 140px" value="{{start}}" onChange="{{onStart}}">
+              <div style="font-size: 12px; color: #59636E; margin-top: 6px">Set this above your ERP’s highest existing number to avoid clashes.</div>
+            </div>
+            <sc-if value="{{hasText}}" hint-placeholder-val="{{false}}">
+              <div>
+                <label class="lbl" for="txt">Fixed text</label>
+                <input id="txt" class="field" style="width: 140px; text-transform: uppercase" value="{{text}}" onChange="{{onText}}">
+              </div>
+            </sc-if>
+          </div>
+
+          <fieldset style="border: 0; margin: 0; padding: 0">
+            <legend class="lbl" style="padding: 0">Count up</legend>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px">
+              <label style="display: flex; gap: 8px; align-items: center; min-height: 36px"><input type="radio" name="scope" checked="{{scopeGlobal}}" onChange="{{setGlobal}}">One counter for all parts</label>
+              <label style="display: flex; gap: 8px; align-items: center; min-height: 36px"><input type="radio" name="scope" checked="{{scopeCat}}" onChange="{{setCat}}" disabled="{{noCat}}">A separate counter per category</label>
+              <label style="display: flex; gap: 8px; align-items: center; min-height: 36px"><input type="radio" name="scope" checked="{{scopeYear}}" onChange="{{setYear}}" disabled="{{noYear}}">Start again each year</label>
+            </div>
+          </fieldset>
+        </section>
+      </div>
+
+      <aside aria-label="Preview" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #1A1F24; color: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; color: #A9B0B7">YOUR NEXT PART NUMBERS</div>
+          <sc-for list="{{examples}}" as="e" hint-placeholder-count="3">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap">
+              <span class="mono" style="font-size: 24px; font-weight: 600; letter-spacing: .01em">{{e.pn}}</span>
+              <span style="font-size: 12px; color: #A9B0B7">{{e.cat}}</span>
+            </div>
+          </sc-for>
+          <div style="border-top: 1px solid #33404C; padding-top: 12px">
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #A9B0B7"><span>Length</span><span class="mono">{{len}} of {{maxLen}} characters</span></div>
+            <div style="height: 6px; background: #33404C; border-radius: 3px; margin-top: 6px; overflow: hidden"><div style="{{lenBar}}"></div></div>
+          </div>
+        </div>
+        <sc-if value="{{hasError}}" hint-placeholder-val="{{false}}">
+          <div role="alert" style="background: #FFF1E0; border: 1px solid #E9B77A; color: #6B3400; border-radius: 8px; padding: 14px; font-size: 14px"><strong>Can’t save yet.</strong> {{error}}</div>
+        </sc-if>
+        <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 16px; font-size: 13px; color: #3B444D; line-height: 1.5; display: flex; flex-direction: column; gap: 8px">
+          <div><strong style="color: #1A1F24">Existing numbers stay as they are.</strong> A new format only applies to parts created after you save it.</div>
+          <div>Keep the number simple. Details such as voltage belong in the description, where people can search them.</div>
+          <details>
+            <summary style="cursor: pointer; font-weight: 600; color: #1A1F24; min-height: 28px">Technical details</summary>
+            <div style="margin-top: 6px">Template <span class="mono" style="color: #1A1F24">{{template}}</span></div>
+            <div style="margin-top: 4px; word-break: break-all">Pattern <span class="mono" style="color: #1A1F24">{{pattern}}</span></div>
+          </details>
+        </div>
+        <button class="btn btn-primary" disabled="{{hasError}}" onClick="{{save}}">{{saveLabel}}</button>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":960}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { preset: 0, segs: ['cat', 'sep', 'seq'], width: 6, start: '1', sep: '-', text: 'E', scope: 'cat', saved: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const P = [
+      { name: 'Category + number', segs: ['cat', 'sep', 'seq'], width: 6, start: '1', scope: 'cat', rec: true },
+      { name: 'Number only', segs: ['seq'], width: 6, start: '100001', scope: 'global', rec: true },
+      { name: 'Fixed letter + number', segs: ['text', 'seq'], width: 6, start: '1', scope: 'global' },
+      { name: 'Category + year + number', segs: ['cat', 'sep', 'yy', 'sep', 'seq'], width: 4, start: '1', scope: 'year' },
+      { name: 'Number + check digit', segs: ['seq', 'chk'], width: 6, start: '100001', scope: 'global' },
+      { name: 'Custom', segs: null }
+    ];
+    const luhn = (digits) => {
+      let sum = 0;
+      const d = digits.split('').reverse();
+      for (let i = 0; i < d.length; i++) { let n = +d[i]; if (i % 2 === 0) { n *= 2; if (n > 9) n -= 9; } sum += n; }
+      return String((10 - (sum % 10)) % 10);
+    };
+    const startN = Math.max(0, parseInt(s.start, 10) || 0);
+    const make = (segs, cfg, code, offset) => {
+      const n = startN + offset;
+      let out = '';
+      for (const g of segs) {
+        if (g === 'cat') out += code;
+        else if (g === 'sep') out += cfg.sep;
+        else if (g === 'seq') out += String(n).padStart(cfg.width, '0');
+        else if (g === 'yy') out += '26';
+        else if (g === 'yyyy') out += '2026';
+        else if (g === 'text') out += (cfg.text || '').toUpperCase();
+        else if (g === 'chk') out += luhn(out.replace(/\D/g, '') || '0');
+      }
+      return out;
+    };
+    const cfg = { sep: s.sep, width: s.width, text: s.text };
+    const presetExample = (p) => {
+      if (!p.segs) return 'Your own';
+      const n0 = p.start === '1' ? 123 : 244;
+      let out = '';
+      for (const g of p.segs) {
+        if (g === 'cat') out += 'RLY';
+        else if (g === 'sep') out += '-';
+        else if (g === 'seq') out += String(parseInt(p.start, 10) + n0).padStart(p.width, '0');
+        else if (g === 'yy') out += '26';
+        else if (g === 'text') out += 'E';
+        else if (g === 'chk') out += luhn(out.replace(/\D/g, ''));
+      }
+      return out;
+    };
+    const setSegs = (segs) => this.setState({ segs, preset: 5, saved: false });
+    const names = { cat: 'Category code', sep: 'Separator', seq: 'Sequence', yy: 'Year (YY)', yyyy: 'Year (YYYY)', text: 'Fixed text', chk: 'Check digit' };
+    const segLabel = (g) => g === 'cat' ? 'RLY' : g === 'sep' ? (s.sep || 'no separator') : g === 'seq' ? '#'.repeat(s.width) : g === 'yy' ? 'YY' : g === 'yyyy' ? 'YYYY' : g === 'text' ? ((s.text || '?').toUpperCase()) : 'check';
+    const segStyle = (g) => g === 'seq' ? 'background: #1F4FBF; color: #FFFFFF' : g === 'cat' ? 'background: #E6ECFA; color: #1E2F5C' : g === 'sep' ? 'background: #FFFFFF; color: #59636E; border: 1px solid #C9CEC8' : 'background: #FFFFFF; color: #1A1F24; border: 1px solid #8A939B';
+    const seqCount = s.segs.filter((g) => g === 'seq').length;
+    const hasCat = s.segs.includes('cat');
+    const hasYear = s.segs.includes('yy') || s.segs.includes('yyyy');
+    const ex = [['RLY', 'Relay', 123], ['CBK', 'Circuit breaker', 46], ['RLY', 'Relay, the one after', 124]];
+    const scopeOff = s.scope === 'global';
+    const offs = ex.map(([code, cat, o], i) => scopeOff ? i : o);
+    const examples = ex.map(([code, cat], i) => ({ pn: seqCount ? make(s.segs, cfg, code, offs[i]) : '—', cat }));
+    const len = examples[0].pn.length;
+    const maxLen = 100;
+    let error = '';
+    if (seqCount === 0) error = 'Add a sequence number block. It is what keeps every number unique.';
+    else if (seqCount > 1) error = 'Use only one sequence number block.';
+    else if (s.scope === 'cat' && !hasCat) error = 'A separate counter per category needs a category code block.';
+    else if (s.scope === 'year' && !hasYear) error = 'Starting again each year needs a year block.';
+    else if (len > maxLen) error = 'The number is longer than USER1 can hold.';
+    const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const template = s.segs.map((g) => g === 'cat' ? '{CAT}' : g === 'sep' ? s.sep : g === 'seq' ? '{SEQ:' + s.width + '}' : g === 'yy' ? '{YY}' : g === 'yyyy' ? '{YYYY}' : g === 'text' ? (s.text || '').toUpperCase() : '{CHK}').join('');
+    const pattern = '^' + s.segs.map((g) => g === 'cat' ? '[A-Z]{1,5}' : g === 'sep' ? esc(s.sep) : g === 'seq' ? '\\d{' + s.width + '}' : g === 'yy' ? '\\d{2}' : g === 'yyyy' ? '\\d{4}' : g === 'text' ? esc((s.text || '').toUpperCase()) : '\\d').join('') + '$';
+    const add = (g) => () => setSegs([...s.segs, g]);
+    const cap = Math.pow(10, s.width) - 1 - startN;
+    return {
+      presets: P.map((p, i) => ({
+        name: p.name, example: presetExample(p), rec: !!p.rec, on: s.preset === i ? 'true' : 'false',
+        pick: () => p.segs ? this.setState({ preset: i, segs: p.segs.slice(), width: p.width, start: p.start, scope: p.scope, saved: false }) : this.setState({ preset: i }),
+        style: s.preset === i ? 'background: #E6ECFA; border: 2px solid #1F4FBF; color: #1A1F24' : 'background: #FFFFFF; border: 1px solid #C9CEC8; color: #1A1F24'
+      })),
+      segs: s.segs.map((g, i) => ({
+        label: segLabel(g), style: segStyle(g), removeLabel: 'Remove ' + names[g],
+        remove: () => setSegs(s.segs.filter((_, j) => j !== i))
+      })),
+      addCat: add('cat'), addSep: add('sep'), addSeq: add('seq'), addYear: add('yy'), addText: add('text'), addChk: add('chk'),
+      seps: [['-', '-', 'Dash'], ['.', '.', 'Dot'], ['_', '_', 'Underscore'], ['', 'none', 'No separator']].map(([v, l, a]) => ({
+        label: l, aria: a, pick: () => this.setState({ sep: v, saved: false }),
+        style: s.sep === v ? 'background: #1A1F24; color: #FFFFFF; border: 1px solid #1A1F24' : 'background: #FFFFFF; color: #1A1F24; border: 1px solid #C9CEC8'
+      })),
+      width: s.width,
+      lessDigits: () => this.setState({ width: Math.max(3, s.width - 1), saved: false }),
+      moreDigits: () => this.setState({ width: Math.min(10, s.width + 1), saved: false }),
+      capacity: cap > 0 ? 'Room for ' + cap.toLocaleString('en-US') + ' more numbers' + (s.scope === 'cat' ? ' per category' : '') : 'No room left: add a digit',
+      start: s.start, onStart: (e) => this.setState({ start: e.target.value.replace(/\D/g, ''), saved: false }),
+      hasText: s.segs.includes('text'), text: s.text, onText: (e) => this.setState({ text: e.target.value.replace(/[^A-Za-z0-9]/g, '').slice(0, 10), saved: false }),
+      scopeGlobal: s.scope === 'global', scopeCat: s.scope === 'cat', scopeYear: s.scope === 'year',
+      noCat: !hasCat, noYear: !hasYear,
+      setGlobal: () => this.setState({ scope: 'global', saved: false }), setCat: () => this.setState({ scope: 'cat', saved: false }), setYear: () => this.setState({ scope: 'year', saved: false }),
+      examples, len, maxLen,
+      lenBar: 'height: 100%; background: ' + (len > maxLen ? '#FFB066' : '#7FA2F0') + '; width: ' + Math.min(100, Math.round(len / maxLen * 100)) + '%',
+      hasError: !!error, error,
+      template, pattern,
+      save: () => this.setState({ saved: true }),
+      saveLabel: s.saved ? 'Saved' : 'Save format'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -13,7 +13,9 @@ NOUN, MODIFIER: ATTR1, ATTR2, ATTR3, ...
 - **Attributes:** in the fixed order defined per category, with values and units.
 
 ### Examples
-| Category | Generated description |
+These are **long** descriptions. The short form (40 characters) is made by dropping "short-optional" attributes from the end, see rule 6. For example, the relay's short form is `RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT` (40 characters).
+
+| Category | Generated description (long) |
 |---|---|
 | Relay | `RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT, 5A, PLUG-IN` |
 | Circuit breaker | `BREAKER, MINIATURE CIRCUIT: 1P, 10A, C CURVE, 10KA, DIN RAIL` |

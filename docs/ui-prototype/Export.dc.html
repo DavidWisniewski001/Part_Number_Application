@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Export to ERP</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.choice{display:flex;align-items:flex-start;gap:10px;padding:14px;border-radius:8px;cursor:pointer;font-size:14px;flex:1 1 240px}
+input[type=radio]{width:18px;height:18px;accent-color:#1F4FBF;margin:1px 0 0}
+th{text-align:left;font:600 12px 'IBM Plex Sans',sans-serif;color:#59636E;padding:10px 12px;border-bottom:1px solid #D9DDD8}
+td{padding:10px 12px;border-bottom:1px solid #E7EAE5;font-size:14px;vertical-align:top}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 900px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a class="on" href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Export to ERP</h1>
+      <p style="margin: 6px 0 0; color: #59636E; font-size: 14px; max-width: 760px">Create a file that [ERP NAME] can import. Every row is checked first, so the import goes through without manual fixes.</p>
+    </div>
+
+    <fieldset style="border: 0; margin: 0; padding: 0">
+      <legend style="font-weight: 600; font-size: 15px; margin-bottom: 10px; padding: 0">What to export</legend>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <label class="choice" style="{{deltaStyle}}"><input type="radio" name="mode" checked="{{isDelta}}" onChange="{{pickDelta}}"><span><strong>New and changed parts</strong><br><span style="color: #59636E">Since the last export on [DATE]</span></span></label>
+        <label class="choice" style="{{fullStyle}}"><input type="radio" name="mode" checked="{{isFull}}" onChange="{{pickFull}}"><span><strong>All parts with a number</strong><br><span style="color: #59636E">For a first load, or to resync everything</span></span></label>
+      </div>
+    </fieldset>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 12px">
+      <div style="flex: 1 1 160px; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 14px 16px">
+        <div style="font-size: 12px; color: #59636E; font-weight: 600">READY</div>
+        <div class="mono" style="font-size: 26px; font-weight: 600; color: #134D2A">{{ready}}</div>
+      </div>
+      <div style="flex: 1 1 160px; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 14px 16px">
+        <div style="font-size: 12px; color: #59636E; font-weight: 600">NEED ATTENTION</div>
+        <div class="mono" style="font-size: 26px; font-weight: 600; color: #9A4A00">{{issues}}</div>
+      </div>
+      <div style="flex: 2 1 280px; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 14px 16px; font-size: 13px; color: #3B444D">
+        <div style="font-size: 12px; color: #59636E; font-weight: 600">FILE</div>
+        <div class="mono" style="margin-top: 4px; word-break: break-all; color: #1A1F24">[EXPORT FOLDER]\parts_{{stamp}}.csv</div>
+        <div style="margin-top: 2px">UTF-8 CSV · columns set by your admin</div>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; overflow-x: auto">
+      <table style="width: 100%; border-collapse: collapse; min-width: 760px">
+        <thead><tr><th>CHECK</th><th>ITEM NUMBER<br><span style="font-weight: 400">from USER1</span></th><th>DESCRIPTION</th><th>MANUFACTURER</th><th>MFR PART NO.</th></tr></thead>
+        <tbody>
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+            <tr>
+              <td style="white-space: nowrap">
+                <sc-if value="{{r.ok}}" hint-placeholder-val="{{true}}"><span style="display: inline-flex; gap: 6px; align-items: center; color: #134D2A; font-weight: 600; font-size: 13px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>Ready</span></sc-if>
+                <sc-if value="{{r.bad}}" hint-placeholder-val="{{false}}"><span style="display: inline-block; background: #FFF1E0; color: #6B3400; border-radius: 4px; padding: 3px 8px; font-size: 13px; font-weight: 500">{{r.problem}}</span></sc-if>
+              </td>
+              <td class="mono" style="font-weight: 600">{{r.pn}}</td>
+              <td>{{r.desc}}</td>
+              <td>{{r.mfr}}</td>
+              <td class="mono" style="font-size: 13px">{{r.mpn}}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+
+    <sc-if value="{{exported}}" hint-placeholder-val="{{false}}">
+      <div role="status" style="background: #EAF5EE; border: 1px solid #A9D3B6; color: #134D2A; border-radius: 8px; padding: 14px 16px; font-size: 14px"><strong>{{ready}} parts exported.</strong> Rows that need attention were left out. Fix them and they will be in the next export.</div>
+    </sc-if>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between">
+      <span style="font-size: 13px; color: #59636E">Rows that need attention are left out of the file until they are fixed.</span>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap">
+        <button class="btn btn-ghost">Column settings</button>
+        <button class="btn btn-primary" onClick="{{doExport}}">Export {{ready}} parts</button>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'delta', exported: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const delta = [
+      { pn: 'RLY-000124', desc: 'RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT', mfr: 'ACME CONTROLS', mpn: 'AC-R4C-24D-S' },
+      { pn: 'CBK-000047', desc: 'BREAKER, MINIATURE CIRCUIT: 2P, 6A, C CURVE', mfr: 'NORTHFIELD ELECTRIC', mpn: 'NF-MCB2-C6' },
+      { pn: 'PBN-000211', desc: 'PB red 1NC', mfr: 'ACME CONTROLS', mpn: 'AC-PB22-R01', problem: 'Description not in standard form' },
+      { pn: 'MSC-000015', desc: 'End plate grey', mfr: 'LINDQVIST TERMINALS', mpn: 'LT-END-GY', problem: 'Description not in standard form' },
+      { pn: 'TRM-001003', desc: 'TERMINAL BLOCK, FEED-THROUGH: 4MM2, SPRING', mfr: 'LINDQVIST TERMINALS', mpn: 'LT-FT4-SP-GY' }
+    ];
+    const full = [
+      { pn: 'RLY-000118', desc: 'RELAY, GENERAL PURPOSE: 24VDC COIL, DPDT', mfr: 'ACME CONTROLS', mpn: 'AC-R2C-24D' },
+      { pn: 'RLY-000123', desc: 'RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT', mfr: 'ACME CONTROLS', mpn: 'AC-R4C-24D' },
+      { pn: 'CBK-000045', desc: 'BREAKER, MINIATURE CIRCUIT: 1P, 10A, C CURVE', mfr: 'NORTHFIELD ELECTRIC', mpn: 'NF-MCB1-C10' },
+      { pn: 'RLY-000088', desc: 'RELAY, GENERAL PURPOSE: 120VAC COIL, SPDT', mfr: 'ACME CONTROLS', mpn: 'AC-R1C-120A', problem: 'Item number used twice' }
+    ].concat(delta);
+    const rows = (s.mode === 'delta' ? delta : full).map((r) => ({ ...r, ok: !r.problem, bad: !!r.problem }));
+    const issues = rows.filter((r) => r.bad).length;
+    const on = 'background: #F2F5FD; border: 1px solid #1F4FBF';
+    const off = 'background: #FFFFFF; border: 1px solid #D9DDD8';
+    return {
+      isDelta: s.mode === 'delta', isFull: s.mode === 'full',
+      deltaStyle: s.mode === 'delta' ? on : off, fullStyle: s.mode === 'full' ? on : off,
+      pickDelta: () => this.setState({ mode: 'delta', exported: false }), pickFull: () => this.setState({ mode: 'full', exported: false }),
+      rows, issues, ready: rows.length - issues,
+      stamp: s.mode === 'delta' ? 'changes_[DATE]' : 'all_[DATE]',
+      exported: s.exported, doExport: () => this.setState({ exported: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

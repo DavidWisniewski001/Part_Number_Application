@@ -30,6 +30,8 @@ A small Windows desktop application (C# / .NET) that works directly with the **A
 | `docs/ACADE_DATABASE_NOTES.md` | What we know (and must verify) about the ACADE catalog schema |
 | `docs/ROADMAP.md` | Phases, milestones, initial backlog |
 | `docs/OPEN_QUESTIONS.md` | Decisions needed from the organization |
+| `docs/UI_DESIGN.md` | Screen-by-screen UI design + link to the clickable prototype |
+| `docs/ui-prototype/` | Prototype source (reference only) |
 | `docs/GLOSSARY.md` | Terms |
 | `docs/adr/` | Architecture Decision Records |
 | `docs/research/` | AutoCAD Electrical 2026 compatibility research |

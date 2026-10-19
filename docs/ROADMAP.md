@@ -9,6 +9,8 @@
 - [ ] Define attribute sets for 3 pilot categories (Relay, Circuit Breaker, Terminal Block)
 - [ ] Agree the ERP export column layout (Q-005). Owner: erp-integration-specialist
 - [ ] Finalize the architecture after the server tests (D3). Owner: solution-architect
+- [x] UI design and clickable prototype (`docs/UI_DESIGN.md`). Owner: wpf-ui-developer
+- [ ] Review the prototype with pilot users and adjust
 
 ## Phase 1: Core (MVP)
 - [ ] Create the solution skeleton, CI build, and test projects

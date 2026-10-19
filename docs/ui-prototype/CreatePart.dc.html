@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New part</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-primary:disabled{background:#AFC0E6;cursor:not-allowed}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.opt{min-height:40px;padding:0 14px;border-radius:6px;font:500 14px 'IBM Plex Mono',monospace;cursor:pointer}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border-radius:8px;cursor:pointer;text-align:left;font-family:'IBM Plex Sans',sans-serif;min-height:96px}
+.field{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #C9CEC8;border-radius:6px;padding:0 12px;font:400 15px 'IBM Plex Sans',sans-serif;background:#FFFFFF;color:#1A1F24}
+.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.step{display:flex;align-items:center;gap:10px;background:none;border:0;padding:8px 0;font:500 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-align:left}
+th{text-align:left;font:600 12px 'IBM Plex Sans',sans-serif;color:#59636E;padding:8px 10px;border-bottom:1px solid #D9DDD8}
+td{padding:8px 10px;border-bottom:1px solid #E7EAE5;font-size:14px}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 900px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a class="on" href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">New part</h1>
+      <p style="margin: 6px 0 0; color: #59636E; font-size: 14px">Answer a few questions. The app writes the description and issues the part number for you.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+      <ol aria-label="Steps" style="flex: 1 1 180px; max-width: 220px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+        <sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+          <li><button class="step" style="{{s.style}}" onClick="{{s.go}}" aria-current="{{s.current}}">
+            <span style="{{s.dot}}">{{s.mark}}</span>{{s.label}}
+          </button></li>
+        </sc-for>
+      </ol>
+
+      <section style="flex: 999 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+
+        <sc-if value="{{is1}}" hint-placeholder-val="{{true}}">
+          <div>
+            <h2 style="margin: 0; font-size: 19px">What kind of part is it?</h2>
+            <p style="margin: 4px 0 16px; color: #59636E; font-size: 14px">The category decides which questions come next and where the part is stored in the catalog.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px">
+              <sc-for list="{{tiles}}" as="t" hint-placeholder-count="8">
+                <button class="tile" style="{{t.style}}" onClick="{{t.pick}}" aria-pressed="{{t.on}}">
+                  <span style="font-weight: 600; font-size: 15px">{{t.name}}</span>
+                  <span class="mono" style="font-size: 12px; color: #59636E">{{t.prefix}} · table {{t.table}}</span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="margin: 14px 0 0; color: #59636E; font-size: 13px">Missing a category? Your administrator adds categories in the settings.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{is2}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 18px">
+            <div>
+              <h2 style="margin: 0; font-size: 19px">Describe the {{catLower}}</h2>
+              <p style="margin: 4px 0 0; color: #59636E; font-size: 14px">Pick each value. The description builds itself on the right.</p>
+            </div>
+            <sc-for list="{{attrs}}" as="a" hint-placeholder-count="4">
+              <div role="group" aria-label="{{a.name}}">
+                <div class="lbl">{{a.name}} <span style="font-weight: 400; color: #59636E">{{a.hint}}</span></div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <sc-for list="{{a.options}}" as="o" hint-placeholder-count="3">
+                    <button class="opt" style="{{o.style}}" onClick="{{o.pick}}" aria-pressed="{{o.on}}">{{o.label}}</button>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{is3}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 18px; max-width: 560px">
+            <div>
+              <h2 style="margin: 0; font-size: 19px">Who makes it?</h2>
+              <p style="margin: 4px 0 0; color: #59636E; font-size: 14px">Manufacturer names come from a fixed list, so they are spelled the same way every time.</p>
+            </div>
+            <div>
+              <label class="lbl" for="mfr">Manufacturer</label>
+              <select id="mfr" class="field" value="{{mfr}}" onChange="{{onMfr}}">
+                <sc-for list="{{mfrs}}" as="m" hint-placeholder-count="3"><option value="{{m}}">{{m}}</option></sc-for>
+              </select>
+              <div style="font-size: 13px; color: #59636E; margin-top: 6px">Common spellings are recognized: “Acme”, “Acme Ctrl” → ACME CONTROLS.</div>
+            </div>
+            <div>
+              <label class="lbl" for="mpn">Manufacturer part number</label>
+              <input id="mpn" class="field mono" value="{{mpn}}" onChange="{{onMpn}}" placeholder="Exactly as printed on the datasheet">
+              <div style="font-size: 13px; color: #59636E; margin-top: 6px">Checked for duplicates as <span class="mono" style="color: #1A1F24">{{mpnNorm}}</span> (spaces, dashes and dots ignored).</div>
+            </div>
+            <div>
+              <label class="lbl" for="ds">Datasheet link <span style="font-weight: 400; color: #59636E">optional</span></label>
+              <input id="ds" class="field" placeholder="https://…">
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{is4}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <h2 style="margin: 0; font-size: 19px">Is this part already in the catalog?</h2>
+            <sc-if value="{{hasDup}}" hint-placeholder-val="{{true}}">
+              <div style="border: 1px solid #E9B77A; background: #FFF6EA; border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+                <div style="font-weight: 600; color: #6B3400">We found 1 part that looks the same</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; background: #FFFFFF; border-radius: 6px; padding: 12px 14px">
+                  <span class="mono" style="font-size: 18px; font-weight: 600">RLY-000123</span>
+                  <span style="font-size: 14px">RELAY, GENERAL PURPOSE: 24VDC COIL, 4PDT, 5A, PLUG-IN</span>
+                  <span class="mono" style="font-size: 13px; color: #59636E">ACME CONTROLS · AC-R4C-24D</span>
+                </div>
+                <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #3B444D; line-height: 1.6">
+                  <sc-for list="{{dupReasons}}" as="r" hint-placeholder-count="2"><li>{{r}}</li></sc-for>
+                </ul>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                  <a class="btn btn-primary" href="Main.dc.html">Use RLY-000123 instead</a>
+                </div>
+                <div>
+                  <label class="lbl" for="why" style="margin-top: 6px">Not the same part? Say why, so reviewers understand</label>
+                  <textarea id="why" class="field" style="min-height: 72px; padding: 10px 12px" value="{{reason}}" onChange="{{onReason}}" placeholder="For example: different coil, sealed version for washdown areas"></textarea>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{noDup}}" hint-placeholder-val="{{false}}">
+              <div style="border: 1px solid #A9D3B6; background: #EAF5EE; border-radius: 8px; padding: 18px; color: #134D2A">
+                <div style="font-weight: 600">No matching parts found</div>
+                <div style="font-size: 14px; margin-top: 4px">Checked every catalog table for the same manufacturer part number and for parts with the same attributes.</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{is5}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div>
+              <h2 style="margin: 0; font-size: 19px">Review and issue</h2>
+              <p style="margin: 4px 0 0; color: #59636E; font-size: 14px">This is exactly what goes into the AutoCAD Electrical catalog, table <span class="mono">{{table}}</span>.</p>
+            </div>
+            <div style="overflow-x: auto; border: 1px solid #D9DDD8; border-radius: 6px">
+              <table style="width: 100%; border-collapse: collapse">
+                <thead><tr><th>CATALOG FIELD</th><th>VALUE</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono">CATALOG</td><td class="mono">{{mpn}}</td></tr>
+                  <tr><td class="mono">MANUFACTURER</td><td>{{mfr}}</td></tr>
+                  <tr><td class="mono">DESCRIPTION</td><td>{{shortDesc}}</td></tr>
+                  <sc-for list="{{mapped}}" as="m" hint-placeholder-count="2"><tr><td class="mono">{{m.col}}</td><td class="mono">{{m.val}}</td></tr></sc-for>
+                  <tr><td class="mono">USER1</td><td style="color: #59636E">Part number, assigned when you click Issue</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{is6}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 12px 0">
+            <div style="display: inline-flex; align-items: center; gap: 8px; color: #134D2A; font-weight: 600"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>Part created in table {{table}}</div>
+            <div class="mono" style="font-size: 48px; font-weight: 600; letter-spacing: .01em">{{issuedPn}}</div>
+            <div style="font-size: 15px">{{longDesc}}</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px">
+              <button class="btn btn-primary" onClick="{{copy}}">{{copyLabel}}</button>
+              <button class="btn btn-ghost" onClick="{{similar}}">Create a similar part</button>
+              <button class="btn btn-ghost" onClick="{{restart}}">Start a new part</button>
+              <a class="btn btn-ghost" href="Main.dc.html">Back to Find parts</a>
+            </div>
+            <div style="font-size: 13px; color: #59636E">It is available in the AutoCAD Electrical Catalog Browser right away, and in the next ERP export.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{showNav}}" hint-placeholder-val="{{true}}">
+          <div style="display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid #E7EAE5; padding-top: 18px; flex-wrap: wrap">
+            <button class="btn btn-ghost" onClick="{{back}}" disabled="{{backDisabled}}">Back</button>
+            <button class="btn btn-primary" onClick="{{next}}" disabled="{{nextDisabled}}">{{nextLabel}}</button>
+          </div>
+        </sc-if>
+      </section>
+
+      <aside aria-label="Live preview" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #1A1F24; color: #FFFFFF; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+          <div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; color: #A9B0B7">DESCRIPTION PREVIEW</div>
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #A9B0B7"><span>Short · catalog and ERP</span><span class="mono" style="{{lenStyle}}">{{shortLen}} / 40</span></div>
+            <div class="mono" style="font-size: 15px; line-height: 1.45; margin-top: 4px; word-break: break-word">{{shortDesc}}</div>
+          </div>
+          <div>
+            <div style="font-size: 12px; color: #A9B0B7">Long</div>
+            <div class="mono" style="font-size: 14px; line-height: 1.45; margin-top: 4px; color: #D5D9DD; word-break: break-word">{{longDesc}}</div>
+          </div>
+          <sc-if value="{{dropped}}" hint-placeholder-val="{{true}}">
+            <div style="font-size: 12px; color: #C9D3F2; line-height: 1.4">To fit 40 characters, the short version leaves out: {{droppedList}}.</div>
+          </sc-if>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 16px; font-size: 13px; color: #3B444D; display: flex; flex-direction: column; gap: 6px">
+          <div style="font-weight: 600; color: #1A1F24">Part number</div>
+          <div><span class="mono" style="color: #1A1F24">{{prefix}}-</span>······ issued at the last step, so no number is ever wasted on a part that isn’t created.</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 1, cat: 'Relay', vals: {}, mfr: 'ACME CONTROLS', mpn: 'AC-R4C-24D-S', reason: '', copied: false };
+  }
+  renderVals() {
+    const C = {
+      'Relay': { noun: 'RELAY', mod: 'GENERAL PURPOSE', table: 'CR', prefix: 'RLY', next: '000124', attrs: [
+        { name: 'Coil voltage', opts: ['12VDC', '24VDC', '120VAC', '230VAC'], fmt: (v) => v + ' COIL', def: '24VDC', col: 'RATING1' },
+        { name: 'Contacts', opts: ['SPDT', 'DPDT', '4PDT'], def: '4PDT', col: 'TYPE' },
+        { name: 'Contact rating', opts: ['5A', '10A', '16A'], def: '5A', opt: true, col: 'RATING2' },
+        { name: 'Mounting', opts: ['PLUG-IN', 'DIN RAIL', 'PANEL'], def: 'PLUG-IN', opt: true }] },
+      'Circuit breaker': { noun: 'BREAKER', mod: 'MINIATURE CIRCUIT', table: 'CB', prefix: 'CBK', next: '000047', attrs: [
+        { name: 'Poles', opts: ['1P', '2P', '3P'], col: 'TYPE' },
+        { name: 'Current', opts: ['6A', '10A', '16A', '20A', '32A'], def: '10A', col: 'RATING1' },
+        { name: 'Trip curve', opts: ['B', 'C', 'D'], def: 'C', fmt: (v) => v + ' CURVE' },
+        { name: 'Interrupting rating', opts: ['6KA', '10KA'], def: '10KA', opt: true, col: 'RATING2' }] },
+      'Terminal block': { noun: 'TERMINAL BLOCK', mod: 'FEED-THROUGH', table: 'TRMS', prefix: 'TRM', next: '001003', attrs: [
+        { name: 'Wire size', opts: ['2.5MM2', '4MM2', '6MM2'], col: 'RATING1' },
+        { name: 'Connection', opts: ['SCREW', 'SPRING', 'PUSH-IN'] },
+        { name: 'Color', opts: ['GRAY', 'BLUE', 'GREEN/YELLOW'], opt: true }] },
+      'Push button': { noun: 'PUSH BUTTON', mod: 'FLUSH', table: 'PB', prefix: 'PBN', next: '000211', attrs: [
+        { name: 'Size', opts: ['22MM', '30MM'] },
+        { name: 'Color', opts: ['GREEN', 'RED', 'BLACK', 'YELLOW'] },
+        { name: 'Contacts', opts: ['1NO', '1NC', '1NO+1NC'], col: 'TYPE' },
+        { name: 'Action', opts: ['MOMENTARY', 'MAINTAINED'], opt: true }] },
+      'Pilot light': { noun: 'PILOT LIGHT', mod: 'LED', table: 'LT', prefix: 'LIT', next: '000078', attrs: [
+        { name: 'Size', opts: ['22MM', '30MM'] },
+        { name: 'Color', opts: ['RED', 'GREEN', 'AMBER', 'WHITE'] },
+        { name: 'Voltage', opts: ['24VAC/DC', '120VAC'], col: 'RATING1' }] },
+      'Fuse': { noun: 'FUSE', mod: 'CARTRIDGE', table: 'FU', prefix: 'FUS', next: '000031', attrs: [
+        { name: 'Current', opts: ['1A', '2A', '5A', '10A'], col: 'RATING1' },
+        { name: 'Voltage', opts: ['250VAC', '600VAC'], col: 'RATING2' },
+        { name: 'Speed', opts: ['FAST', 'TIME DELAY'], opt: true }] },
+      'Selector switch': { noun: 'SELECTOR SWITCH', mod: 'KNOB', table: 'SS', prefix: 'SEL', next: '000052', attrs: [
+        { name: 'Positions', opts: ['2 POS', '3 POS'] },
+        { name: 'Contacts', opts: ['1NO', '2NO', '1NO+1NC'], col: 'TYPE' },
+        { name: 'Action', opts: ['MAINTAINED', 'SPRING RETURN'], opt: true }] },
+      'Motor': { noun: 'MOTOR', mod: 'AC INDUCTION', table: 'MO', prefix: 'MTR', next: '000009', attrs: [
+        { name: 'Power', opts: ['0.37KW', '0.75KW', '1.5KW'], col: 'RATING1' },
+        { name: 'Voltage', opts: ['230/400VAC', '460VAC'], col: 'RATING2' },
+        { name: 'Speed', opts: ['1800RPM', '3600RPM'], opt: true }] }
+    };
+    const s = this.state;
+    const def = C[s.cat];
+    const val = (a) => s.vals[s.cat + '|' + a.name] ?? a.def ?? a.opts[0];
+    const setVal = (a, v) => this.setState({ vals: { ...s.vals, [s.cat + '|' + a.name]: v } });
+    const pieces = def.attrs.map((a) => ({ a, text: a.fmt ? a.fmt(val(a)) : val(a) }));
+    const build = (ps) => def.noun + (def.mod ? ', ' + def.mod : '') + ': ' + ps.map((p) => p.text).join(', ');
+    const longDesc = build(pieces);
+    let kept = pieces.slice();
+    const dropped = [];
+    while (build(kept).length > 40) {
+      let i = -1;
+      for (let j = kept.length - 1; j >= 0; j--) { if (kept[j].a.opt) { i = j; break; } }
+      if (i < 0) break;
+      dropped.unshift(kept[i].a.name.toLowerCase());
+      kept.splice(i, 1);
+    }
+    const shortDesc = build(kept);
+    const norm = s.mpn.toUpperCase().replace(/[\s.\-]/g, '');
+    const sameAttrs = s.cat === 'Relay' && val(def.attrs[0]) === '24VDC' && val(def.attrs[1]) === '4PDT';
+    const sameMpn = norm === 'ACR4C24D';
+    const hasDup = sameAttrs || sameMpn;
+    const dupReasons = [];
+    if (sameAttrs) dupReasons.push('Same category, coil voltage and contacts');
+    if (s.mfr === 'ACME CONTROLS' && sameAttrs) dupReasons.push('Same manufacturer');
+    if (sameMpn) dupReasons.push('Same manufacturer part number');
+    const labels = ['Category', 'Details', 'Manufacturer', 'Duplicate check', 'Review and issue'];
+    const go = (n) => this.setState({ step: n, copied: false });
+    const nextDisabled = s.step === 3 && !s.mpn.trim() ? true : (s.step === 4 && hasDup && !s.reason.trim());
+    return {
+      is1: s.step === 1, is2: s.step === 2, is3: s.step === 3, is4: s.step === 4, is5: s.step === 5, is6: s.step === 6,
+      showNav: s.step < 6,
+      steps: labels.map((l, i) => {
+        const n = i + 1;
+        const done = n < s.step;
+        const cur = n === s.step;
+        return {
+          label: l, mark: done ? '✓' : String(n), current: cur ? 'step' : 'false',
+          go: () => { if (done) go(n); },
+          style: cur ? 'color: #1A1F24; font-weight: 600' : (done ? 'color: #1F4FBF' : 'color: #59636E; cursor: default'),
+          dot: 'width: 28px; height: 28px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font: 600 13px IBM Plex Mono, monospace; ' +
+            (cur ? 'background: #1F4FBF; color: #FFFFFF' : (done ? 'background: #E6ECFA; color: #1F4FBF' : 'background: #FFFFFF; color: #59636E; border: 1px solid #C9CEC8'))
+        };
+      }),
+      tiles: Object.keys(C).map((k) => ({
+        name: k, prefix: C[k].prefix, table: C[k].table, on: k === s.cat ? 'true' : 'false',
+        pick: () => this.setState({ cat: k }),
+        style: k === s.cat ? 'background: #E6ECFA; border: 2px solid #1F4FBF; color: #1A1F24' : 'background: #FFFFFF; border: 1px solid #C9CEC8; color: #1A1F24'
+      })),
+      catLower: s.cat.toLowerCase(),
+      attrs: def.attrs.map((a) => ({
+        name: a.name, hint: a.opt ? 'may be left out of the short description' : '',
+        options: a.opts.map((o) => ({
+          label: o, on: val(a) === o ? 'true' : 'false', pick: () => setVal(a, o),
+          style: val(a) === o ? 'background: #1A1F24; color: #FFFFFF; border: 1px solid #1A1F24' : 'background: #FFFFFF; color: #1A1F24; border: 1px solid #C9CEC8'
+        }))
+      })),
+      mfrs: ['ACME CONTROLS', 'NORTHFIELD ELECTRIC', 'LINDQVIST TERMINALS'],
+      mfr: s.mfr, onMfr: (e) => this.setState({ mfr: e.target.value }),
+      mpn: s.mpn, onMpn: (e) => this.setState({ mpn: e.target.value }), mpnNorm: norm || '—',
+      hasDup, noDup: !hasDup, dupReasons,
+      reason: s.reason, onReason: (e) => this.setState({ reason: e.target.value }),
+      table: def.table, prefix: def.prefix,
+      mapped: def.attrs.filter((a) => a.col).map((a) => ({ col: a.col, val: val(a) })),
+      shortDesc, longDesc, shortLen: shortDesc.length,
+      lenStyle: shortDesc.length > 40 ? 'color: #FFB066' : 'color: #A9B0B7',
+      dropped: dropped.length > 0, droppedList: dropped.join(', '),
+      issuedPn: def.prefix + '-' + def.next,
+      back: () => go(Math.max(1, s.step - 1)), backDisabled: s.step === 1,
+      next: () => go(s.step + 1), nextDisabled,
+      nextLabel: s.step === 5 ? 'Issue part number' : (s.step === 4 && hasDup ? 'It’s a different part, continue' : 'Next'),
+      copy: () => this.setState({ copied: true }), copyLabel: s.copied ? 'Copied' : 'Copy part number',
+      similar: () => go(2),
+      restart: () => this.setState({ step: 1, vals: {}, mpn: '', reason: '', copied: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Assign numbers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-primary:disabled{background:#AFC0E6;cursor:not-allowed}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.tab{min-height:44px;padding:0 16px;background:none;border:0;border-bottom:3px solid transparent;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer}
+th{text-align:left;font:600 12px 'IBM Plex Sans',sans-serif;color:#59636E;padding:10px 12px;border-bottom:1px solid #D9DDD8}
+td{padding:10px 12px;border-bottom:1px solid #E7EAE5;font-size:14px;vertical-align:middle}
+input[type=checkbox]{width:18px;height:18px;accent-color:#1F4FBF}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 900px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a class="on" href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+    <div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Assign numbers</h1>
+      <p style="margin: 6px 0 0; color: #59636E; font-size: 14px">Catalog rows added in AutoCAD Electrical, or before this app existed, may have no part number. Give them one here.</p>
+    </div>
+
+    <div role="tablist" aria-label="Views" style="display: flex; flex-wrap: wrap; border-bottom: 1px solid #D9DDD8">
+      <button role="tab" class="tab" style="{{tabA}}" aria-selected="{{selA}}" onClick="{{showA}}">Rows without a number <span class="mono" style="font-weight: 500">({{countA}})</span></button>
+      <button role="tab" class="tab" style="{{tabB}}" aria-selected="{{selB}}" onClick="{{showB}}">Numbers that need attention <span class="mono" style="font-weight: 500">(3)</span></button>
+    </div>
+
+    <sc-if value="{{isA}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+          <div role="status" style="background: #EAF5EE; border: 1px solid #A9D3B6; color: #134D2A; border-radius: 8px; padding: 14px 16px; font-size: 14px"><strong>{{doneCount}} numbers assigned.</strong> They are written to USER1 and show up in the Catalog Browser and BOM reports.</div>
+        </sc-if>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between">
+          <div style="font-size: 14px; color: #3B444D">{{selCount}} selected. Numbers are given out in the order shown, using the format <span class="mono">{CAT}-{SEQ:6}</span>.</div>
+          <button class="btn btn-primary" onClick="{{assign}}" disabled="{{assignDisabled}}">{{assignLabel}}</button>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; min-width: 720px">
+            <thead><tr>
+              <th style="width: 40px"><input type="checkbox" aria-label="Select all" checked="{{allOn}}" onChange="{{toggleAll}}"></th>
+              <th>TABLE</th><th>MANUFACTURER</th><th>MFR PART NO.</th><th>CURRENT DESCRIPTION</th><th>PART NUMBER</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+                <tr style="{{r.rowStyle}}">
+                  <td><input type="checkbox" aria-label="{{r.aria}}" checked="{{r.on}}" onChange="{{r.toggle}}" disabled="{{r.locked}}"></td>
+                  <td class="mono" style="font-size: 13px">{{r.table}}</td>
+                  <td>{{r.mfr}}</td>
+                  <td class="mono" style="font-size: 13px">{{r.mpn}}</td>
+                  <td style="color: #3B444D">{{r.desc}}</td>
+                  <td class="mono" style="{{r.pnStyle}}">{{r.pnText}}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #59636E">Descriptions are left as they are. To bring an old description up to the standard, open the part and choose “Rewrite description”.</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isB}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <p style="margin: 0; font-size: 14px; color: #3B444D">These USER1 values were typed by hand or come from an older numbering scheme. Nothing changes until you choose an action.</p>
+        <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; min-width: 720px">
+            <thead><tr><th>USER1 TODAY</th><th>TABLE</th><th>MANUFACTURER · PART NO.</th><th>PROBLEM</th><th>ACTION</th></tr></thead>
+            <tbody>
+              <sc-for list="{{issues}}" as="i" hint-placeholder-count="3">
+                <tr>
+                  <td class="mono" style="font-weight: 600">{{i.user1}}</td>
+                  <td class="mono" style="font-size: 13px">{{i.table}}</td>
+                  <td>{{i.part}}</td>
+                  <td><span style="display: inline-block; background: #FFF1E0; color: #6B3400; border-radius: 4px; padding: 3px 8px; font-size: 13px; font-weight: 500">{{i.problem}}</span></td>
+                  <td>
+                    <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                      <button class="btn btn-ghost" style="min-height: 36px; padding: 0 12px; font-size: 13px">{{i.primary}}</button>
+                      <button class="btn btn-ghost" style="min-height: 36px; padding: 0 12px; font-size: 13px">Leave as is</button>
+                    </div>
+                  </td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'A', on: { 0: true, 1: true, 3: true }, assigned: {} };
+  }
+  renderVals() {
+    const s = this.state;
+    const rows = [
+      { table: 'CR', mfr: 'ACME', mpn: 'AC-R4C-24D-B', desc: 'Relay 24V' },
+      { table: 'CR', mfr: 'ACME CONTROLS', mpn: 'AC-R2C-120A', desc: 'RELAY 120VAC DPDT' },
+      { table: 'CB', mfr: 'Northfield', mpn: 'NF-MCB2-C6', desc: '2 pole breaker 6 amp' },
+      { table: 'PB', mfr: 'ACME CONTROLS', mpn: 'AC-PB22-R01', desc: 'PB red 1NC' },
+      { table: 'MISC_CAT', mfr: 'LINDQVIST TERMINALS', mpn: 'LT-END-GY', desc: 'End plate grey' }
+    ];
+    const prefix = { CR: 'RLY', CB: 'CBK', PB: 'PBN', MISC_CAT: 'MSC' };
+    const start = { RLY: 124, CBK: 47, PBN: 211, MSC: 15 };
+    const counters = { ...start };
+    for (const k of Object.keys(s.assigned)) { const p = prefix[rows[k].table]; counters[p] = Math.max(counters[p], s.assigned[k].n + 1); }
+    const preview = {};
+    const c2 = { ...counters };
+    rows.forEach((r, i) => {
+      if (s.on[i] && !s.assigned[i]) { const p = prefix[r.table]; preview[i] = { n: c2[p], text: p + '-' + String(c2[p]).padStart(6, '0') }; c2[p]++; }
+    });
+    const open = rows.map((r, i) => i).filter((i) => !s.assigned[i]);
+    const selCount = open.filter((i) => s.on[i]).length;
+    const doneCount = Object.keys(s.assigned).length;
+    return {
+      isA: s.tab === 'A', isB: s.tab === 'B',
+      selA: s.tab === 'A' ? 'true' : 'false', selB: s.tab === 'B' ? 'true' : 'false',
+      tabA: s.tab === 'A' ? 'color: #1A1F24; border-bottom-color: #1F4FBF' : 'color: #59636E',
+      tabB: s.tab === 'B' ? 'color: #1A1F24; border-bottom-color: #1F4FBF' : 'color: #59636E',
+      showA: () => this.setState({ tab: 'A' }), showB: () => this.setState({ tab: 'B' }),
+      countA: open.length,
+      rows: rows.map((r, i) => {
+        const a = s.assigned[i];
+        const p = preview[i];
+        return {
+          ...r, aria: 'Select ' + r.mpn, on: !!s.on[i] && !a, locked: !!a,
+          toggle: () => this.setState({ on: { ...s.on, [i]: !s.on[i] } }),
+          rowStyle: a ? 'background: #F4FAF6' : (s.on[i] ? 'background: #F2F5FD' : ''),
+          pnText: a ? a.text : (p ? p.text + ' (on assign)' : '—'),
+          pnStyle: a ? 'font-weight: 600; color: #134D2A' : (p ? 'color: #59636E' : 'color: #8A939B')
+        };
+      }),
+      allOn: open.length > 0 && selCount === open.length,
+      toggleAll: () => { const all = selCount !== open.length; const on = { ...s.on }; open.forEach((i) => { on[i] = all; }); this.setState({ on }); },
+      selCount,
+      assignDisabled: selCount === 0,
+      assignLabel: 'Assign ' + selCount + (selCount === 1 ? ' number' : ' numbers'),
+      assign: () => { const assigned = { ...s.assigned }; Object.keys(preview).forEach((k) => { assigned[k] = preview[k]; }); this.setState({ assigned }); },
+      done: doneCount > 0, doneCount,
+      issues: [
+        { user1: 'R-123', table: 'CR', part: 'ACME CONTROLS · AC-R2C-12D', problem: 'Old numbering scheme', primary: 'Replace with new number' },
+        { user1: 'RLY-000088', table: 'CR / CR', part: 'Two different relays', problem: 'Same number used twice', primary: 'Give one a new number' },
+        { user1: 'cbk-45', table: 'CB', part: 'NORTHFIELD ELECTRIC · NF-MCB1-B6', problem: 'Typed by hand, wrong format', primary: 'Replace with new number' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

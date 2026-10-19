@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Server connection</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F4F1}
+a{color:#1F4FBF}a:hover{color:#163A8F}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;color:#D5D9DD;text-decoration:none;font-size:14px}
+.nav a:hover{background:#2A3239;color:#FFFFFF}
+.nav a.on{background:#33404C;color:#FFFFFF;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:6px;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn-primary{background:#1F4FBF;color:#FFFFFF}.btn-primary:hover{background:#163A8F;color:#FFFFFF}
+.btn-ghost{background:#FFFFFF;color:#1A1F24;border-color:#C9CEC8}.btn-ghost:hover{background:#EEF0EC;color:#1A1F24}
+.field{width:100%;box-sizing:border-box;min-height:44px;border:1px solid #C9CEC8;border-radius:6px;padding:0 12px;font:400 15px 'IBM Plex Sans',sans-serif;background:#FFFFFF;color:#1A1F24}
+.lbl{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.radio{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:6px;cursor:pointer;font-size:14px}
+input[type=radio],input[type=checkbox]{width:18px;height:18px;accent-color:#1F4FBF;margin:1px 0 0}
+</style>
+</helmet>
+<div style="font-family: 'IBM Plex Sans', system-ui, sans-serif; color: #1A1F24; background: #F3F4F1; min-height: 900px; display: flex; flex-wrap: wrap; align-items: stretch">
+
+  <nav class="nav" aria-label="Main" style="flex: 1 1 220px; max-width: 100%; background: #1A1F24; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px 20px">
+      <div class="mono" style="width: 34px; height: 34px; border-radius: 6px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px">PN</div>
+      <div>
+        <div style="color: #FFFFFF; font-weight: 600; font-size: 15px">Part Numbers</div>
+        <div style="color: #A9B0B7; font-size: 12px">for AutoCAD Electrical</div>
+      </div>
+    </div>
+    <a href="Main.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Find parts</a>
+    <a href="CreatePart.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>New part</a>
+    <a href="AssignNumbers.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 4L7 20M17 4l-2 16M4 9h16M3 15h16"></path></svg>Assign numbers</a>
+    <a href="Export.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"></path></svg>Export to ERP</a>
+    <div style="color: #A9B0B7; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 22px 12px 6px">SETUP</div>
+    <a href="FormatBuilder.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"></path><circle cx="16" cy="6" r="2"></circle><circle cx="10" cy="12" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>Part number format</a>
+    <a class="on" href="Connection.dc.html"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg>Server connection</a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <ol aria-label="First-time setup" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: #59636E">
+      <li style="color: #1A1F24; font-weight: 600"><span class="mono" style="background: #1F4FBF; color: #FFFFFF; border-radius: 10px; padding: 1px 7px; margin-right: 6px">1</span>Connect to the catalog</li>
+      <li><span class="mono" style="border: 1px solid #C9CEC8; border-radius: 10px; padding: 0 6px; margin-right: 6px">2</span>Choose your part number format</li>
+      <li><span class="mono" style="border: 1px solid #C9CEC8; border-radius: 10px; padding: 0 6px; margin-right: 6px">3</span>Start creating parts</li>
+    </ol>
+    <div>
+      <h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Connect to your AutoCAD Electrical catalog</h1>
+      <p style="margin: 6px 0 0; color: #59636E; font-size: 14px; max-width: 720px">Use the same SQL Server and catalog database that AutoCAD Electrical 2026 uses. Your CAD administrator or IT can tell you the names.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+      <section style="flex: 999 1 440px; min-width: 0; background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+          <div>
+            <label class="lbl" for="srv">Server</label>
+            <input id="srv" class="field mono" placeholder="SERVERNAME\INSTANCE">
+          </div>
+          <div>
+            <label class="lbl" for="db">Catalog database</label>
+            <input id="db" class="field mono" placeholder="Database name">
+          </div>
+        </div>
+
+        <fieldset style="border: 0; margin: 0; padding: 0">
+          <legend class="lbl" style="padding: 0">Sign in with</legend>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <label class="radio" style="{{winStyle}}"><input type="radio" name="auth" checked="{{isWin}}" onChange="{{pickWin}}"><span><strong>My Windows account</strong> (recommended)<br><span style="color: #59636E">No password to type or store. Works if your account has access to the catalog.</span></span></label>
+            <label class="radio" style="{{sqlStyle}}"><input type="radio" name="auth" checked="{{isSql}}" onChange="{{pickSql}}"><span><strong>A SQL Server login</strong><br><span style="color: #59636E">The password is stored encrypted on this computer.</span></span></label>
+          </div>
+        </fieldset>
+        <sc-if value="{{isSql}}" hint-placeholder-val="{{false}}">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+            <div><label class="lbl" for="usr">Login name</label><input id="usr" class="field"></div>
+            <div><label class="lbl" for="pwd">Password</label><input id="pwd" class="field" type="password"></div>
+          </div>
+        </sc-if>
+
+        <div>
+          <label class="lbl" for="cfg">Shared settings file</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <input id="cfg" class="field mono" style="flex: 1 1 260px; width: auto" placeholder="\\fileserver\share\PartNumberApp\settings.json">
+            <button class="btn btn-ghost">Browse…</button>
+          </div>
+          <div style="font-size: 13px; color: #59636E; margin-top: 6px">Every computer must use the same file, so everyone gets the same part number format and description rules.</div>
+        </div>
+
+        <details style="font-size: 14px">
+          <summary style="cursor: pointer; font-weight: 600; min-height: 32px">Advanced</summary>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 10px 0 0">
+            <label style="display: flex; gap: 10px; align-items: flex-start"><input type="checkbox" checked="{{true}}">Encrypt the connection (recommended)</label>
+            <label style="display: flex; gap: 10px; align-items: flex-start"><input type="checkbox">Trust the server certificate (only for servers without a company certificate)</label>
+          </div>
+        </details>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; border-top: 1px solid #E7EAE5; padding-top: 18px">
+          <button class="btn btn-ghost" onClick="{{test}}">{{testLabel}}</button>
+          <a class="btn btn-primary" href="FormatBuilder.dc.html" style="{{nextStyle}}">Save and continue</a>
+        </div>
+      </section>
+
+      <aside aria-label="Connection test" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #FFFFFF; border: 1px solid #D9DDD8; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <div style="font-weight: 600">Connection test</div>
+          <sc-if value="{{notTested}}" hint-placeholder-val="{{true}}">
+            <div style="font-size: 14px; color: #59636E">Fill in the server and database, then choose Test connection. Nothing is changed on the server during the test.</div>
+          </sc-if>
+          <sc-if value="{{tested}}" hint-placeholder-val="{{false}}">
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+              <sc-for list="{{checks}}" as="c" hint-placeholder-count="5">
+                <li style="display: flex; gap: 10px; font-size: 14px">
+                  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E7A42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M5 12l5 5 9-10"></path></svg>
+                  <span><strong style="font-weight: 600">{{c.title}}</strong><br><span style="color: #3B444D">{{c.detail}}</span></span>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+        </div>
+        <div style="background: #E6ECFA; border-radius: 8px; padding: 16px; font-size: 13px; color: #1E2F5C; line-height: 1.5">
+          <strong>Safe for AutoCAD Electrical.</strong> The app creates nothing on the server: no tables, no changes to the catalog layout. It only adds and updates part rows, the same way the Catalog Browser does.
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { auth: 'win', tested: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const on = 'background: #F2F5FD; border: 1px solid #1F4FBF';
+    const off = 'background: #FFFFFF; border: 1px solid #D9DDD8';
+    return {
+      isWin: s.auth === 'win', isSql: s.auth === 'sql',
+      winStyle: s.auth === 'win' ? on : off, sqlStyle: s.auth === 'sql' ? on : off,
+      pickWin: () => this.setState({ auth: 'win' }), pickSql: () => this.setState({ auth: 'sql' }),
+      tested: s.tested, notTested: !s.tested,
+      test: () => this.setState({ tested: true }),
+      testLabel: s.tested ? 'Test again' : 'Test connection',
+      nextStyle: s.tested ? '' : 'opacity: .55',
+      checks: [
+        { title: 'Server reached', detail: 'Signed in with your Windows account.' },
+        { title: 'AutoCAD Electrical catalog found', detail: '[N] catalog tables recognized (CB, CR, FU, LT, PB, SS…).' },
+        { title: 'Room for part numbers', detail: 'USER1 holds up to [LENGTH] characters. Your format needs at most 10.' },
+        { title: 'You can create parts', detail: 'Read and write access to the catalog tables.' },
+        { title: 'Shared settings file found', detail: 'Format, categories and description rules loaded.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
