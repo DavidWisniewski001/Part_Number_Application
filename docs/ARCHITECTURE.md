@@ -72,6 +72,17 @@ See ADRs for decisions that are still open.
 ### 5.3 ERP export
 Export view `pnm.vw_ErpExport` → CSV with a column map from configuration. Delta exports use `pnm.ExportBatch`.
 
+## 5a. Connecting to the catalog server
+AutoCAD Electrical 2026 already uses a SQL Server catalog, so the app connects to the **same server and database that ACADE uses**.
+
+- **First-run setup screen:** server/instance (e.g. `SQLSRV01\ACADE`), database name, and authentication (Windows Integrated by default; SQL login optional). Includes a **Test connection** button that checks:
+  1. the connection opens;
+  2. the database contains recognizable ACADE catalog tables (has `CATALOG`, `MANUFACTURER`, `DESCRIPTION`, `USER1` columns);
+  3. the current user's rights (read / write on the catalog tables).
+- Settings are saved per machine in `%ProgramData%\PartNumberApp\appsettings.json`, so every user on a workstation shares one setting. An admin can pre-deploy that file. SQL passwords, if used, are encrypted with Windows DPAPI and never stored in plain text.
+- The connection string is built with `SqlConnectionStringBuilder`, never by string concatenation. `Encrypt=True` by default, with an option to trust the server certificate for on-premises servers without a CA-issued certificate.
+- A **read-only mode** activates automatically if the user has no write rights, so they can still search.
+
 ## 6. Security
 - Least privilege: the app's AD group gets full rights on `pnm`. On `dbo`, it gets SELECT, plus INSERT/UPDATE only on the mapped ACADE catalog tables.
 - All SQL is parameterized. Dynamic table names for ACADE tables are **validated against `pnm.Category.AcadeTable` and `sys.tables`**, then quoted with `QUOTENAME`.
