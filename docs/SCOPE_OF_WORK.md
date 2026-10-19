@@ -27,21 +27,22 @@ Parts are currently created by hand, in more than one system, with free-text des
 ## 4. In scope
 ### 4.1 Functional
 1. **Part creation wizard:** pick a category, enter attributes, manufacturer and MPN; see a live preview of the generated description.
-2. **Part number issuance:** atomic, gap-tolerant sequence per category, following `PART_NUMBER_STANDARD.md`.
+2. **Part number issuance:** safe for concurrent users. Stored in `USER1`. Uses the **structure the customer configures** (presets or custom builder, `PART_NUMBER_STANDARD.md`).
 3. **Description generation:** template-driven per category, following `DESCRIPTION_STANDARD.md`, including the controlled abbreviation list.
 4. **Duplicate detection:** exact and fuzzy match on manufacturer + normalized MPN, plus attribute similarity within the category. Warn and require justification to proceed.
 5. **Search and browse:** keyword, category, manufacturer, MPN, attribute filters, and lifecycle status.
-6. **Lifecycle workflow:** Draft → In Review → Released → Obsolete (with a "superseded by" link). Role-based actions.
-7. **ACADE catalog sync:** on release, insert or update the corresponding ACADE catalog table row (CATALOG, MANUFACTURER, DESCRIPTION, and so on) plus our internal PN in an agreed field.
+6. **Lifecycle workflow (optional, Q-013):** Draft → In Review → Released → Obsolete. Needs the companion database.
+7. **Catalog write:** insert a new family-table row (CATALOG, MANUFACTURER, DESCRIPTION, mapped attributes, USER1), or assign a number to an existing row that has an empty USER1.
 8. **ERP export:** CSV export (released parts, or changes since the last export) in a column layout agreed with the ERP owner.
 9. **Administration:** maintain categories, attribute definitions, templates, abbreviations, manufacturers and users/roles.
-10. **Audit trail:** who created, changed, approved or released what, and when.
+10. **Audit trail:** an append-only issuance log (who issued which number, when, for which row). Full change history only with the companion database (Q-013).
 11. **Legacy import (one-time):** import existing ACADE catalog and/or ERP part lists into Draft or "Legacy" status for clean-up.
 
 ### 4.2 Non-functional
 - Windows 10/11 desktop, domain users. Windows Authentication to SQL Server.
 - 5–25 concurrent users. Responsive search (<1 s typical) on 100k parts.
-- No changes to ACADE table structures. All app objects live in the `pnm` schema.
+- **Zero footprint:** no objects created in the catalog database. Only rows in existing family tables (ADR-0003). Part number in `USER1`.
+- Connects to the organization's existing AutoCAD Electrical 2026 SQL Server catalog through a setup screen.
 - Installable through MSIX or a simple self-contained publish. No admin rights needed to run.
 - Logging to file. Errors are shown to users in plain language.
 
@@ -59,19 +60,19 @@ Parts are currently created by hand, in more than one system, with free-text des
 | D1 | Approved Part Number Standard and Description Standard | 0 |
 | D2 | Verified ACADE catalog schema map for the organization's database | 0 |
 | D3 | Architecture document + ADRs | 0–1 |
-| D4 | `pnm` database schema scripts + deployment instructions | 1 |
+| D4 | Shared settings file schema, setup screens (connection, part number format builder), deployment instructions | 1 |
 | D5 | Desktop application (create, search, number issuance, descriptions) | 1–2 |
 | D6 | Workflow, audit, admin screens | 2 |
-| D7 | ACADE catalog sync | 2 |
+| D7 | Assign numbers to existing catalog rows + USER1 clean-up report | 2 |
 | D8 | ERP CSV export | 3 |
 | D9 | Legacy import + clean-up report | 3 |
 | D10 | User guide, admin guide, release notes | 2–3 |
 | D11 | Automated test suite (unit + integration) | ongoing |
 
 ## 7. Assumptions
-- The organization's ACADE install is configured to use a **SQL Server** catalog database (not the default Access `.mdb`). See Q-001.
+- AutoCAD Electrical 2026 with its catalog on SQL Server (confirmed, Q-001).
 - A non-production copy of the catalog database is available for development and testing.
-- A service account or AD group can be granted rights on the `pnm` schema.
+- Users (or an app login) can be granted SELECT/INSERT/UPDATE on the catalog family tables.
 - The ERP accepts a CSV (or Excel) item import.
 
 ## 8. Constraints and risks

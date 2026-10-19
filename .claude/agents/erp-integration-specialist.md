@@ -11,5 +11,5 @@ Approach:
 - Validate before export: no field over its ERP max length, required fields present, only Released parts (or the configured statuses).
 - Support full and delta exports (tracked by export batch), and make them re-runnable.
 - Legacy import: load existing ERP/ACADE parts as Legacy status, map old numbers (Q-008), and produce a duplicate-candidate report for clean-up.
-- Reconciliation report: parts that differ between ERP, pnm and ACADE (PN, description, MFR, MPN).
+- Reconciliation report: parts that differ between the ERP and the ACADE catalog (USER1) (PN, description, MFR, MPN).
 The ERP product and its rules are unknown until Q-005 is answered. Don't assume them.

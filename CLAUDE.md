@@ -3,11 +3,11 @@
 Working rules for Claude Code (and its subagents) in this repository.
 
 ## Project in one sentence
-A C# / WPF desktop app that issues controlled part numbers and generates standardized descriptions, stored alongside the AutoCAD Electrical SQL Server catalog and exported to the ERP.
+A C# / WPF desktop app that issues controlled part numbers (stored in `USER1`) and generates standardized descriptions, directly in the AutoCAD Electrical 2026 SQL Server catalog, with export to the ERP.
 
 ## Ground rules
-1. **Never alter AutoCAD Electrical's own table structure.** No dropping, renaming or retyping of ACADE catalog columns. The app's own data lives in the `pnm` schema (see ADR-0002). Writes to ACADE catalog tables only insert or update rows, through the sync service, inside transactions.
-2. **Part numbers are issued only by the database sequence logic** (`pnm.usp_IssuePartNumber`). Never generate them client-side.
+1. **Zero footprint in the catalog database (ADR-0003).** Never create, alter or drop anything there: no tables, views, schemas, procedures, triggers, indexes or columns. Only row INSERT/UPDATE on existing family tables, with explicit column lists. Never write `RECNUM`/`ROWGUID`. Never DELETE. Use short transactions with a lock timeout.
+2. **Part numbers are issued only by the issuance flow** in ARCHITECTURE §5.1 (`sp_getapplock` + highest matching `USER1` + uniqueness re-check, all in one transaction). Never assign a number outside that flow.
 3. **Descriptions are generated, not typed.** Any change to description rules goes through `docs/DESCRIPTION_STANDARD.md` first, then code.
 4. **Standards documents are the source of truth.** If code and `docs/*_STANDARD.md` disagree, raise it. Do not silently "fix" either one.
 5. **Record significant decisions** as an ADR in `docs/adr/` (copy the format of ADR-0001).
@@ -23,8 +23,8 @@ A C# / WPF desktop app that issues controlled part numbers and generates standar
 
 ## Conventions
 - Solution layout: `src/PartNumber.{Domain,Application,Infrastructure,Desktop}`, `tests/PartNumber.*.Tests`
-- All SQL is parameterized. No string-concatenated SQL, ever.
-- SQL schema changes are numbered scripts in `db/schema/NNN_description.sql`, idempotent where possible.
+- All values are parameters. The only dynamic SQL allowed is family-table names, whitelisted from `INFORMATION_SCHEMA` and wrapped in `QUOTENAME` (ADR-0003 §6).
+- `db/discovery/` holds read-only inspection scripts. `db/companion-db/` is optional and must never be run in the catalog database.
 - Commit messages: imperative mood, short summary line, body explains why.
 
 ## Agents

@@ -1,0 +1,39 @@
+/*
+  02_user1_and_duplicates.sql  (READ-ONLY, safe to run on production)
+  Answers research tests T3.2 (what is already in USER1) and T4.2 (duplicate rows).
+  Generates one UNION query across every family table, then runs it.
+  Table names come from the catalog's own metadata and are wrapped in QUOTENAME.
+*/
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+DECLARE @sql NVARCHAR(MAX) = N'';
+
+SELECT @sql = @sql + CASE WHEN @sql = N'' THEN N'' ELSE N' UNION ALL ' END +
+       N'SELECT ' + QUOTENAME(TABLE_NAME, '''') + N' AS TableName, MANUFACTURER, CATALOG, '
+     + N'ASSEMBLYCODE, USER1 FROM ' + QUOTENAME(TABLE_SCHEMA) + N'.' + QUOTENAME(TABLE_NAME)
+FROM  INFORMATION_SCHEMA.COLUMNS c
+WHERE c.COLUMN_NAME = 'USER1'
+  AND EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS x WHERE x.TABLE_SCHEMA = c.TABLE_SCHEMA
+              AND x.TABLE_NAME = c.TABLE_NAME AND x.COLUMN_NAME = 'CATALOG')
+  AND EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS x WHERE x.TABLE_SCHEMA = c.TABLE_SCHEMA
+              AND x.TABLE_NAME = c.TABLE_NAME AND x.COLUMN_NAME = 'MANUFACTURER')
+  AND EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS x WHERE x.TABLE_SCHEMA = c.TABLE_SCHEMA
+              AND x.TABLE_NAME = c.TABLE_NAME AND x.COLUMN_NAME = 'ASSEMBLYCODE');
+
+SET @sql = N'WITH AllRows AS (' + @sql + N')
+SELECT ''USER1 summary'' AS Report, TableName, COUNT(*) AS Rows_,
+       SUM(CASE WHEN NULLIF(LTRIM(RTRIM(USER1)), '''') IS NOT NULL THEN 1 ELSE 0 END) AS RowsWithUser1,
+       MIN(USER1) AS SampleMin, MAX(USER1) AS SampleMax
+FROM AllRows GROUP BY TableName ORDER BY TableName;
+
+WITH AllRows AS (' + @sql + N')
+SELECT ''Duplicate MFR+CATALOG+ASSEMBLYCODE'' AS Report, TableName, MANUFACTURER, CATALOG, ASSEMBLYCODE, COUNT(*) AS Copies
+FROM AllRows GROUP BY TableName, MANUFACTURER, CATALOG, ASSEMBLYCODE HAVING COUNT(*) > 1
+ORDER BY Copies DESC;
+
+WITH AllRows AS (' + @sql + N')
+SELECT ''USER1 used more than once'' AS Report, USER1, COUNT(*) AS Uses
+FROM AllRows WHERE NULLIF(LTRIM(RTRIM(USER1)), '''') IS NOT NULL
+GROUP BY USER1 HAVING COUNT(*) > 1 ORDER BY Uses DESC;';
+
+EXEC sys.sp_executesql @sql;

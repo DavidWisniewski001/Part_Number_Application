@@ -1,6 +1,6 @@
 # ADR-0002: App-owned `pnm` schema alongside the ACADE catalog
 
-- Status: **Proposed** (depends on Q-002)
+- Status: **Superseded** by ADR-0003 (owner prefers no app area on the server; research shows extra tables likely appear in the Catalog Browser)
 - Date: 2026-10-19
 
 ## Context

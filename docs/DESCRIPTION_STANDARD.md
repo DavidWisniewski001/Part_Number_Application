@@ -25,13 +25,13 @@ NOUN, MODIFIER: ATTR1, ATTR2, ATTR3, ...
 2. Comma + space between attributes. Colon + space after the modifier.
 3. No manufacturer name or MPN in the description. Those are separate fields.
 4. Units directly attached, no space: `24VDC`, `10A`, `2.5MM2`, `22MM`.
-5. Use only abbreviations from the controlled list (`pnm.Abbreviation`). No ad-hoc abbreviations.
+5. Use only abbreviations from the controlled list (in the shared settings file). No ad-hoc abbreviations.
 6. Max length: **40 characters for a short description** (verify the ERP and ACADE `DESCRIPTION` field limits, Q-007) and 255 for the long description. If the generated short description is too long, attributes marked "short-optional" are dropped from the end.
 7. No special characters other than `- . / , :` and `%`. Write `UF` for microfarad, not `µF`.
 8. Fractions as decimals (`0.25IN`) unless the category template says otherwise.
 
 ## 3. Attribute dictionary
-Each category defines its attributes in `pnm.AttributeDefinition`:
+Each category defines its attributes in the shared settings file:
 
 | Field | Example |
 |---|---|
@@ -43,6 +43,7 @@ Each category defines its attributes in `pnm.AttributeDefinition`:
 | DescOrder | 1 |
 | ShortOptional | No |
 | Format | `{value}{unit} COIL` |
+| AcadeColumn | `RATING1` (optional; also writes the value to this catalog column, verify per table) |
 
 ## 4. Starter abbreviations
 | Term | Abbrev. |
@@ -59,5 +60,5 @@ Each category defines its attributes in `pnm.AttributeDefinition`:
 | With / without | W/ / W/O |
 
 ## 5. Manufacturer data
-- Manufacturer comes from the controlled list (`pnm.Manufacturer`). Aliases map to the canonical name ("A-B", "Allen Bradley" → `ALLEN-BRADLEY`).
+- Manufacturer comes from the controlled list (in the shared settings file). Aliases map to the canonical name ("A-B", "Allen Bradley" → `ALLEN-BRADLEY`).
 - MPN is stored **as printed by the manufacturer** *and* in normalized form (upper case, spaces/dashes/dots removed) for duplicate checks.

@@ -1,8 +1,10 @@
 /*
   001_create_pnm_schema.sql
-  DRAFT: application-owned schema for the Part Number Application.
-  Not yet run against any database. Review with acade-db-specialist and DBA before use.
-  Does NOT touch any AutoCAD Electrical (dbo) tables.
+  OPTIONAL / ON HOLD (see ADR-0003, Q-013).
+  For a SEPARATE companion database on the same SQL Server instance only.
+  NEVER run this in the AutoCAD Electrical catalog database: extra tables there can
+  appear as Catalog Browser categories (docs/research/ACADE_2026_CATALOG_COMPATIBILITY.md).
+  Not used by the default zero-footprint mode. Not yet run against any database.
 */
 IF SCHEMA_ID(N'pnm') IS NULL EXEC(N'CREATE SCHEMA pnm AUTHORIZATION dbo;');
 GO
